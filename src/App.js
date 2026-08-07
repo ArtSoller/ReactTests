@@ -1,19 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Counter from './components/Counter';
 import ClassCounter from './components/ClassCounter';
 import '../src/styles/App.css';
 import PostItem from './components/PostItem';
+import PostList from './components/PostList';
 
 function App() {
-  const [value, setValue] = React.useState('Text');
+  const [posts, setPosts] = useState([
+    { id: 1, title: 'JavaScript', body: 'Description' },
+    { id: 2, title: 'JavaScript 2', body: 'Description' },
+    { id: 3, title: 'JavaScript 3', body: 'Description' }
+  ]);
+  const [posts2, setPosts2] = useState([
+    { id: 1, title: 'Python', body: 'Description' },
+    { id: 2, title: 'Python 2', body: 'Description' },
+    { id: 3, title: 'Python 3', body: 'Description' }
+  ]);
+  // const [value, setValue] = useState('Text');
 
   return (
     <div className="App">
-      <PostItem post={{id:1, title: 'JavaScript', body: 'Description'}}/>
-      <PostItem post={{id:2, title: 'JavaScript', body: 'Description'}}/>
-      <PostItem post={{id:3, title: 'JavaScript', body: 'Description'}}/>
-      <PostItem post={{id:4, title: 'JavaScript', body: 'Description'}}/>
-
+      <PostList posts={posts} title="Посты про JS"/>
+      <PostList posts={posts2} title="Посты про Python"/>
     </div>
   );
 }
