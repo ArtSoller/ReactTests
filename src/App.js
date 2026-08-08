@@ -1,4 +1,4 @@
-import React, { useState,  useRef} from 'react';
+import React, { useState, useRef } from 'react';
 import Counter from './components/Counter';
 import ClassCounter from './components/ClassCounter';
 import '../src/styles/App.css';
@@ -14,13 +14,12 @@ function App() {
     { id: 3, title: 'JavaScript 3', body: 'Description' }
   ]);
 
-  const [title, setTitle] = useState('')
-  const bodyInputRef = useRef();
+  const [post, setPost] = useState({title: '', body: ''})
 
   const addNewPost = (e) => {
     e.preventDefault()
-    console.log(title)
-    console.log(bodyInputRef.current)
+    setPosts([...posts, {...post, id: Date.now()}])
+    setPost({title: '', body: ''})
   }
 
   return (
@@ -28,21 +27,16 @@ function App() {
       <form>
         {/* Управляемый компонент */}
         <MyInput
-          value={title}
-          onChange={e => setTitle(e.target.value)}
-          type="text" 
-          placeholder="Название поста" 
+          value={post.title}
+          onChange={e => setPost({...post, title: e.target.value})}
+          type="text"
+          placeholder="Название поста"
         />
-        {/* <input
-          ref={bodyInputRef}
-          type="text" 
-          placeholder="Описание поста" 
-        /> */}
-        {/* Неуправляемый компонент */}
         <MyInput
-          ref={bodyInputRef}
-          type="text" 
-          placeholder="Описание поста" 
+          value={post.body}
+          onChange={e => setPost({...post, body: e.target.value})}
+          type="text"
+          placeholder="Описание поста"
         />
         <MyButton onClick={addNewPost} >Создать пост</MyButton>
       </form>

@@ -7,8 +7,8 @@ const PostList = ({posts, title}) => {
             <h1 style={{ textAlign: 'center' }}>
                 {title}
             </h1>
-            {posts.map((post) =>
-                <div key={post.id}><PostItem post={post} /></div>
+            {posts.map((post, index) =>
+                <PostItem number={index + 1} post={post} key={post.id}/>
             )}
         </div>
     );
